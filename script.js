@@ -691,8 +691,8 @@ showAchievementButton.addEventListener('click', () => {
 
 
 // Автоматическое создание калейдоскопа
-function createKaleidoscope() {
-  const container = document.querySelector('.kaleidoscope-gallery .ice-circle');
+document.addEventListener('DOMContentLoaded', function() {
+  const reelTrack = document.querySelector('.reel-track');
   const images = [
     'Foto/pear1.jpg',
     'Foto/pear2.jpg',
@@ -721,21 +721,28 @@ function createKaleidoscope() {
     'Foto/pear25.jpg',
   ];
 
-  container.innerHTML = ''; // Очищаем контейнер
-
-  images.forEach((img, index) => {
-    const angle = index * 45;
-    container.innerHTML += `
-      <div class="photo-spoke" data-angle="${angle}">
-        <div class="photo-ice">
-          <img src="${img}" alt="Тренировка">
-          <div class="ice-crack"></div>
-        </div>
+  // Очищаем и генерируем в 2 раза больше фото для плавности
+  reelTrack.innerHTML = '';
+  [...images, ...images].forEach(img => {
+    reelTrack.innerHTML += `
+      <div class="film-frame">
+        <img src="${img}" alt="Выступление" loading="lazy">
+        <div class="frame-perforation"></div>
       </div>
     `;
   });
-}
 
-// Вызываем функцию после загрузки страницы
-window.addEventListener('load', createKaleidoscope);
-
+  // 2. Добавляем динамические тени при движении
+  const frames = document.querySelectorAll('.film-frame');
+  frames.forEach(frame => {
+    frame.addEventListener('mousemove', (e) => {
+      const x = e.offsetX / frame.offsetWidth * 100;
+      const y = e.offsetY / frame.offsetHeight * 100;
+      frame.style.boxShadow = `
+        ${x/5}px ${y/5}px 20px rgba(0, 0, 0, 0.4),
+        0 0 0 3px #f8d485,
+        0 0 40px rgba(248, 212, 133, 0.6)
+      `;
+    });
+  });
+});

@@ -551,70 +551,69 @@ nav a {
   }
  
   
-  .film-reel-gallery {
-    position: relative;
-    width: 100%;
-    max-width: 1000px;
-    margin: 3rem auto;
-    overflow: hidden;
-    background: #7c4700;
-    padding: 40px 0;
-    border-radius: 5px;
-    box-shadow: 0 10px 30px rgba(4, 22, 75, 0.795);
-  }
-  
-  .reel-track {
-    display: flex;
-    gap: 15px;
-    padding: 0 100px;
-    animation: scrollReel 40s linear infinite;
-  }
-  
-  .film-reel-gallery:hover .reel-track {
-    animation-play-state: paused;
-  }
-  
-  .film-frame {
-    position: relative;
-    min-width: 250px;
-    height: 350px;
-    overflow: hidden;
-    border-radius: 3px;
-    box-shadow: 0 4px 10px rgba(88, 54, 3, 0.623);
-    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-  
-  .film-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
-  }
-  
-  .film-frame:hover {
-    transform: scale(1.1);
-    z-index: 10;
-  }
-  
-  .film-frame:hover img {
-    transform: scale(1.2);
-  }
-  
-  .frame-perforation {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 10px;
-    background: repeating-linear-gradient(
-      to right,
-      #9e5919 0px,
-      #111 10px,
-      transparent 10px,
-      transparent 20px
-    );
-  }
-  
+/* В самый конец файла или в раздел с галереей */
+.film-reel-gallery {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 50px auto;
+  overflow: hidden;
+  background: linear-gradient(135deg, #5a3a1a 0%, #3d250e 100%);
+  padding: 30px 0;
+  border-radius: 8px;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    inset 0 0 20px rgba(255, 255, 255, 0.1); /* Блик внутри */
+}
+
+.reel-track {
+  display: flex;
+  gap: 20px;
+  padding: 0 80px;
+  animation: scrollReel 30s linear infinite;
+}
+
+.film-frame {
+  position: relative;
+  min-width: 250px;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow:
+    0 5px 15px rgba(0, 0, 0, 0.3),
+    0 0 0 2px #d4a762, /* Золотая рамка */
+    0 0 30px rgba(212, 167, 98, 0.4); /* Свечение */
+  transition: all 0.5s ease;
+}
+
+.film-frame::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 50%
+  );
+  z-index: 2;
+}
+
+.film-frame:hover {
+  transform: scale(1.08);
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.5),
+    0 0 0 3px #f8d485,
+    0 0 40px rgba(248, 212, 133, 0.6);
+}
+
+@keyframes scrollReel {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
   /* Катушки */
   .reel-left, .reel-right {
     position: absolute;
@@ -674,19 +673,29 @@ nav a {
     pointer-events: none;
     z-index: 2;
   }
-  .kaleidoscope-gallery {
-    position: relative;
-    width: 600px;
-    height: 600px;
-    margin: 0 auto;
-  }
-  
-  .ice-circle {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    animation: rotateCircle 30s linear infinite;
-  }
+.kaleidoscope-gallery {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  margin: 50px auto;
+}
+
+.ice-circle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: rotateCircle 30s linear infinite;
+}
+
+@keyframes rotateCircle {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.film-reel-gallery:hover .reel-track,
+.kaleidoscope-gallery:hover .ice-circle {
+  animation-play-state: paused;
+}
   
   .photo-spoke {
     position: absolute;
