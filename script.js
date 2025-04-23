@@ -677,5 +677,65 @@ document.addEventListener('DOMContentLoaded', function () {
     
 
 
+const showAchievementButton = document.getElementById('showAchievementButton');
+const achievement = document.getElementById('achievement1'); // Или любой другой ID достижения
 
+showAchievementButton.addEventListener('click', () => {
+  achievement.classList.add('show'); // Показываем достижение
+
+  // Скрываем достижение через 3 секунды
+  setTimeout(() => {
+    achievement.classList.remove('show');
+  }, 3000);
+});
+
+
+// Автоматическое создание калейдоскопа
+function createKaleidoscope() {
+  const container = document.querySelector('.kaleidoscope-gallery .ice-circle');
+  const images = [
+    'Foto/pear1.jpg',
+    'Foto/pear2.jpg',
+    'Foto/pear3.jpg',
+    'Foto/pear4.jpg',
+    'Foto/pear5.jpg',
+    'Foto/pear6.jpg',
+    'Foto/pear7.jpg',
+    'Foto/pear8.jpg',
+    'Foto/pear9.jpg',
+    'Foto/pear10.jpg',
+    'Foto/pear11.jpg',
+    'Foto/pear12.jpg',
+    'Foto/pear13.png',
+    'Foto/pear14.png',
+    'Foto/pear15.jpg',
+    'Foto/pear16.png',
+    'Foto/pear17.jpg',
+    'Foto/pear18.png',
+    'Foto/pear19.png',
+    'Foto/pear20.png',
+    'Foto/pear21.png',
+    'Foto/pear22.png',
+    'Foto/pear23.jpg',
+    'Foto/pear24.jpg',
+    'Foto/pear25.jpg',
+  ];
+
+  container.innerHTML = ''; // Очищаем контейнер
+
+  images.forEach((img, index) => {
+    const angle = index * 45;
+    container.innerHTML += `
+      <div class="photo-spoke" data-angle="${angle}">
+        <div class="photo-ice">
+          <img src="${img}" alt="Тренировка">
+          <div class="ice-crack"></div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+// Вызываем функцию после загрузки страницы
+window.addEventListener('load', createKaleidoscope);
 

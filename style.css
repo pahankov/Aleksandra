@@ -222,7 +222,7 @@ nav a {
 }
   .parallax-container {
     position: relative;
-    background-image: url("Фото6.jpg");
+    background-image: url("Foto/pear19.png");
     height: 100vh; /* Высота контейнера */
     background-attachment: fixed;
     background-position: center;
